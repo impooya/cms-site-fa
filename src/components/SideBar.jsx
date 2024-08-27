@@ -1,7 +1,7 @@
 export default function SideBar() {
   return (
     <>
-      <nav className="flex flex-col divide-y-2 divide-violet-400 bg-indigo-700 h-screen fixed inset-0 w-72 ">
+      <nav className="flex flex-col divide-y-2 divide-violet-400 bg-indigo-700 h-screen fixed  bottom-0 ">
         <h1 className="text-[22.4px] inline-block text-white p-4 text-center">
           به داشبورد خوش آمدید
         </h1>
