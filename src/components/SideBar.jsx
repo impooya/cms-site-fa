@@ -1,3 +1,10 @@
+import { AiOutlineProduct } from "react-icons/ai";
+import { IoHomeOutline } from "react-icons/io5";
+import { AiOutlineComment } from "react-icons/ai";
+import { FaUsersViewfinder } from "react-icons/fa6";
+import { IoBasketOutline } from "react-icons/io5";
+import { MdOutlineLocalOffer } from "react-icons/md";
+
 export default function SideBar() {
   return (
     <>
@@ -8,49 +15,55 @@ export default function SideBar() {
         <ul className="flex flex-col items-start justify-center pt-5 gap-6">
           <li className="w-full  h-16 flex justify-start items-center hover:bg-blue-700 transition-all ">
             <a
-              className="w-auto h-full inline-flex items-center text-white text-2xl  pr-4 active:bg-blue-700"
+              className="w-auto h-full inline-flex items-center gap-1 text-white text-2xl  pr-4 active:bg-blue-700"
               href="#"
             >
+              <IoHomeOutline />
               صفحه اصلی
             </a>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900"
+              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
               href="#"
             >
+              <AiOutlineProduct />
               محصولات
             </a>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900"
+              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
               href="#"
             >
+              <AiOutlineComment />
               کامنت ها
             </a>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900"
+              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
               href="#"
             >
+              <FaUsersViewfinder />
               کاربران
             </a>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900"
+              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
               href="#"
             >
+              <IoBasketOutline />
               سفارشات
             </a>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900"
+              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
               href="#"
             >
+              <MdOutlineLocalOffer />
               تخفیف ها
             </a>
           </li>
