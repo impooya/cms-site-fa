@@ -18,7 +18,7 @@ export default function Header() {
             </div>
           </div>
           <div className="flex justify-center items-center gap-x-5">
-            <div className="flex justify-between items-center bg-white p-5 rounded-xl  outline-none border-none w-[400px] h-11">
+            <div className="flex justify-between items-center bg-white pr-5 pb-5 pt-5 pl-1 rounded-xl  outline-none border-none w-[400px] h-11">
               <input
                 className="focus:outline-none"
                 type="text"
