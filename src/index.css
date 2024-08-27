@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: Lalezar;
+    src: url(/fonts/Lalezar-Regular.ttf);
+  }
+
+  body {
+    background-color: #f0f0f0;
+  }
+
+  *,
+  body,
+  html {
+    font-family: Lalezar;
+  }
+
+  /* :root {
+    --white: #ffffff;
+    --white-50: #f0f0f0;
+    --blue: #471AAA;
+} */
+}
