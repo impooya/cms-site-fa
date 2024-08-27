@@ -4,6 +4,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { IoBasketOutline } from "react-icons/io5";
 import { MdOutlineLocalOffer } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function SideBar() {
   return (
@@ -14,13 +15,13 @@ export default function SideBar() {
         </h1>
         <ul className="flex flex-col items-start justify-center pt-5 gap-6">
           <li className="w-full  h-16 flex justify-start items-center hover:bg-blue-700 transition-all ">
-            <a
+            <Link
               className="w-auto h-full inline-flex items-center gap-1 text-white text-2xl  pr-4 active:bg-blue-700"
-              href="#"
+              to="/"
             >
               <IoHomeOutline />
               صفحه اصلی
-            </a>
+            </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
             <a

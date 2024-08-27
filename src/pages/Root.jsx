@@ -1,8 +1,12 @@
 import SideBar from "../components/SideBar";
+import MainPage from "./MainPage";
 export default function Root() {
   return (
     <>
-      <SideBar />
+      <section className="flex items-center">
+        <SideBar />
+        <MainPage />
+      </section>
     </>
   );
 }
