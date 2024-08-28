@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <>
       <header className="w-full h-auto">
-        <section className="flex items-center justify-between w-7/12 text-zinc-700">
+        <section className="flex items-center justify-between  text-zinc-700">
           <div className="flex justify-center items-center gap-x-3 shrink-0">
             <img
               className="size-12 rounded-full"
