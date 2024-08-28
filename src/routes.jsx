@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
 import MainPage from "./pages/MainPage";
+import Products from "./pages/Products";
+import Comments from "./pages/Comments";
+import Users from "./pages/Users";
+import Orders from "./pages/Orders";
+import Offers from "./pages/Offers";
 
 export const routes = createBrowserRouter([
   {
@@ -10,6 +15,26 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/comments",
+        element: <Comments />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
+      },
+      {
+        path: "/offers",
+        element: <Offers />,
       },
     ],
   },
