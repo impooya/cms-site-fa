@@ -4,7 +4,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { IoBasketOutline } from "react-icons/io5";
 import { MdOutlineLocalOffer } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function SideBar() {
   return (
@@ -15,58 +15,82 @@ export default function SideBar() {
         </h1>
         <ul className="flex flex-col items-start justify-center pt-5 gap-6">
           <li className="w-full  h-16 flex justify-start items-center hover:bg-blue-700 transition-all ">
-            <Link
-              className="w-auto h-full inline-flex items-center gap-1 text-white text-2xl  pr-4 active:bg-blue-700"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/"
             >
               <IoHomeOutline />
               صفحه اصلی
-            </Link>
+            </NavLink>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <Link
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/products"
             >
               <AiOutlineProduct />
               محصولات
-            </Link>
+            </NavLink>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <Link
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/comments"
             >
               <AiOutlineComment />
               کامنت ها
-            </Link>
+            </NavLink>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <Link
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/users"
             >
               <FaUsersViewfinder />
               کاربران
-            </Link>
+            </NavLink>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <Link
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/orders"
             >
               <IoBasketOutline />
               سفارشات
-            </Link>
+            </NavLink>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <Link
-              className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
+            <NavLink
+              className={({ isActive }) =>
+                `w-full h-full inline-flex items-center gap-1 text-white text-2xl pr-4  ${
+                  isActive ? "bg-blue-700" : ""
+                }`
+              }
               to="/offers"
             >
               <MdOutlineLocalOffer />
               تخفیف ها
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
