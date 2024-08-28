@@ -24,49 +24,49 @@ export default function SideBar() {
             </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <a
+            <Link
               className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
-              href="#"
+              to="/products"
             >
               <AiOutlineProduct />
               محصولات
-            </a>
+            </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <a
+            <Link
               className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
-              href="#"
+              to="/comments"
             >
               <AiOutlineComment />
               کامنت ها
-            </a>
+            </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <a
+            <Link
               className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
-              href="#"
+              to="/users"
             >
               <FaUsersViewfinder />
               کاربران
-            </a>
+            </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <a
+            <Link
               className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
-              href="#"
+              to="/orders"
             >
               <IoBasketOutline />
               سفارشات
-            </a>
+            </Link>
           </li>
           <li className="w-full h-16 flex justify-start items-center hover:bg-violet-900 transition-all ">
-            <a
+            <Link
               className="h-full w-auto text-white text-2xl inline-flex items-center pr-4 active:bg-violet-900 gap-1"
-              href="#"
+              to="/offers"
             >
               <MdOutlineLocalOffer />
               تخفیف ها
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
