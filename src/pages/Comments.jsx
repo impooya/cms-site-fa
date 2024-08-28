@@ -1,3 +1,9 @@
+import ErorrMessage from "../components/ErorrMessage";
+
 export default function Comments() {
-  return <div>Comments</div>;
+  return (
+    <>
+      <ErorrMessage msg={"هیچ پیامی یافت نشد"} />
+    </>
+  );
 }

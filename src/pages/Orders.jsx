@@ -1,8 +1,9 @@
 import ErorrMessage from "../components/ErorrMessage";
 
 export default function Orders() {
-  if ([].length === 0) {
-    return <ErorrMessage />;
-  }
-  return <div>Orders</div>;
+  return (
+    <>
+      <ErorrMessage msg={"هیچ سفارشی پیدا نشد"} />
+    </>
+  );
 }
