@@ -1,3 +1,8 @@
+import ErorrMessage from "../components/ErorrMessage";
+
 export default function Offers() {
-  return <div>Offers</div>;
+  if ([].length === 0) {
+    return <ErorrMessage />;
+  }
+  return <></>;
 }

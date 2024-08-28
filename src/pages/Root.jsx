@@ -6,9 +6,11 @@ export default function Root() {
     <>
       <section className="flex items-center">
         <SideBar />
-        <div className="mr-72 w-full px-6 mt-4">
+        <div className="mr-72 w-full px-6 mt-4 flex flex-col items-center justify-center">
           <Header />
-          <Outlet />
+          <section className="mt-7 w-full ">
+            <Outlet />
+          </section>
         </div>
       </section>
     </>
