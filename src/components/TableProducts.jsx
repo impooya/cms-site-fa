@@ -1,4 +1,14 @@
-export default function TableProducts() {
+import PropTypes from "prop-types";
+
+export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
+  function showDeleteModalHandler() {
+    if (isVisibleModal) {
+      changeVisibleModal(false);
+    } else {
+      changeVisibleModal(true);
+    }
+  }
+
   return (
     <>
       <section className="w-full bg-white mt-4 rounded-2xl shadow-2xl pt-4 ">
@@ -21,7 +31,9 @@ export default function TableProducts() {
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
                 <button type="button">جزییات</button>
-                <button type="button">حذف</button>
+                <button type="button" onClick={showDeleteModalHandler}>
+                  حذف
+                </button>
                 <button type="button">ویرایش</button>
               </td>
             </tr>
@@ -34,7 +46,9 @@ export default function TableProducts() {
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
                 <button type="button">جزییات</button>
-                <button type="button">حذف</button>
+                <button type="button" onClick={showDeleteModalHandler}>
+                  حذف
+                </button>
                 <button type="button">ویرایش</button>
               </td>
             </tr>
@@ -47,7 +61,9 @@ export default function TableProducts() {
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
                 <button type="button">جزییات</button>
-                <button type="button">حذف</button>
+                <button type="button" onClick={showDeleteModalHandler}>
+                  حذف
+                </button>
                 <button type="button">ویرایش</button>
               </td>
             </tr>
@@ -57,3 +73,8 @@ export default function TableProducts() {
     </>
   );
 }
+
+TableProducts.propTypes = {
+  changeVisibleModal: PropTypes.func.isRequired, // Assuming it's a required function
+  isVisibleModal: PropTypes.bool.isRequired,
+};
