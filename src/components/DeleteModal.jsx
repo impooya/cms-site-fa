@@ -14,7 +14,7 @@ export default function Modals({ changeVisibleModal, isVisibleModal }) {
         <div
           className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
             isVisibleModal ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+          } transition-all `}
         >
           <div className="w-[500px] bg-white  flex flex-col justify-center items-center gap-y-6 pb-7 rounded-xl ">
             <CiCircleAlert className="size-36 text-red-600" />
