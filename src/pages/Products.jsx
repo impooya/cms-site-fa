@@ -3,6 +3,7 @@ import { useState } from "react";
 import AddProducts from "../components/AddProducts";
 import Modals from "../components/DeleteModal";
 import TableProducts from "../components/TableProducts";
+import DetailsModal from "../components/DetailsModal";
 
 export default function Products() {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
@@ -18,6 +19,7 @@ export default function Products() {
         changeVisibleModal={setShowRemoveModal}
         isVisibleModal={showRemoveModal}
       />
+      <DetailsModal />
     </>
   );
 }
