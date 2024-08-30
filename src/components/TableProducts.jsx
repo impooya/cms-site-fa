@@ -7,10 +7,7 @@ export default function TableProducts({
   changeVisibleDetailsModal,
   changeVisibleEditModal,
   isVisibleEditModal,
-  // eslint-disable-next-line react/prop-types
   datasProducts,
-  isLoadingdatasProducts,
-  isErrorLoadingProducts,
 }) {
   function showDeleteModalHandler() {
     if (isVisibleDeleteModal) {
@@ -78,10 +75,12 @@ export default function TableProducts({
 }
 
 TableProducts.propTypes = {
-  changeVisibleDeleteModal: PropTypes.func, // Assuming it's a required function
+  changeVisibleDeleteModal: PropTypes.func,
   isVisibleDeleteModal: PropTypes.bool,
   changeVisibleDetailsModal: PropTypes.func,
   isVisibleDetailsModal: PropTypes.bool,
   changeVisibleEditModal: PropTypes.func,
   isVisibleEditModal: PropTypes.bool,
+
+  datasProducts: PropTypes.array,
 };

@@ -7,6 +7,7 @@ import DetailsModal from "../components/DetailsModal";
 import EditModal from "../components/EditModal";
 import { MdOutlineFiberNew } from "react-icons/md";
 import { useGetAllProductsResponse } from "../api/apiConfigurations";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Products() {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
@@ -24,7 +25,20 @@ export default function Products() {
     data: productsData,
     isLoading,
     isError,
+    error,
   } = useGetAllProductsResponse();
+
+  if (isLoading) {
+    return <ClipLoader color="rgba(0, 0, 255, 1)" />;
+  }
+
+  if (isError) {
+    return (
+      <>
+        <h1 className="bg-red-600 text-white w-full">{error.message}</h1>
+      </>
+    );
+  }
 
   return (
     <>
@@ -41,8 +55,6 @@ export default function Products() {
             changeVisibleEditModal={setShowEditModal}
             isVisibleEditModal={showEditModal}
             datasProducts={productsData}
-            isLoadingdatasProducts={isLoading}
-            isErrorLoadingProducts={isError}
           />
           <Modals
             changeVisibleDeleteModal={setShowRemoveModal}
