@@ -52,6 +52,6 @@ export default function Modals({
 }
 
 Modals.propTypes = {
-  isVisibleDeleteModal: PropTypes.bool.isRequired,
-  changeVisibleDeleteModal: PropTypes.func.isRequired,
+  isVisibleDeleteModal: PropTypes.bool,
+  changeVisibleDeleteModal: PropTypes.func,
 };

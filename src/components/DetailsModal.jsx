@@ -24,7 +24,7 @@ export default function DetailsModal({
           <section className="bg-white w-1/6 rounded-2xl flex flex-col mb-3">
             <button
               type="button"
-              className="mr-3 mt-3 child:size-6 child:text-red-600"
+              className="mr-3 mt-3 child:size-6 child:text-red-600 w-6"
               onClick={closeDetailsModalHandler}
             >
               <IoCloseCircleOutline />
@@ -53,6 +53,6 @@ export default function DetailsModal({
   );
 }
 DetailsModal.propTypes = {
-  changeVisibleDetailsModal: PropTypes.func.isRequired,
-  isVisibleDetailsModal: PropTypes.bool.isRequired,
+  changeVisibleDetailsModal: PropTypes.func,
+  isVisibleDetailsModal: PropTypes.bool,
 };

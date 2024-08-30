@@ -5,6 +5,8 @@ export default function TableProducts({
   isVisibleDeleteModal,
   isVisibleDetailsModal,
   changeVisibleDetailsModal,
+  changeVisibleEditModal,
+  isVisibleEditModal,
 }) {
   function showDeleteModalHandler() {
     if (isVisibleDeleteModal) {
@@ -19,6 +21,14 @@ export default function TableProducts({
       changeVisibleDetailsModal(false);
     } else {
       changeVisibleDetailsModal(true);
+    }
+  }
+
+  function showEditModalHandler() {
+    if (isVisibleEditModal) {
+      changeVisibleEditModal(false);
+    } else {
+      changeVisibleEditModal(true);
     }
   }
 
@@ -49,7 +59,9 @@ export default function TableProducts({
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
-                <button type="button">ویرایش</button>
+                <button type="button" onClick={showEditModalHandler}>
+                  ویرایش
+                </button>
               </td>
             </tr>
             <tr className="child:w-56 child:text-xl">
@@ -66,7 +78,9 @@ export default function TableProducts({
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
-                <button type="button">ویرایش</button>
+                <button type="button" onClick={showEditModalHandler}>
+                  ویرایش
+                </button>
               </td>
             </tr>
             <tr className="child:w-56 child:text-xl">
@@ -83,7 +97,9 @@ export default function TableProducts({
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
-                <button type="button">ویرایش</button>
+                <button type="button" onClick={showEditModalHandler}>
+                  ویرایش
+                </button>
               </td>
             </tr>
           </tbody>
@@ -94,8 +110,10 @@ export default function TableProducts({
 }
 
 TableProducts.propTypes = {
-  changeVisibleDeleteModal: PropTypes.func.isRequired, // Assuming it's a required function
-  isVisibleDeleteModal: PropTypes.bool.isRequired,
-  changeVisibleDetailsModal: PropTypes.func.isRequired,
-  isVisibleDetailsModal: PropTypes.bool.isRequired,
+  changeVisibleDeleteModal: PropTypes.func, // Assuming it's a required function
+  isVisibleDeleteModal: PropTypes.bool,
+  changeVisibleDetailsModal: PropTypes.func,
+  isVisibleDetailsModal: PropTypes.bool,
+  changeVisibleEditModal: PropTypes.func,
+  isVisibleEditModal: PropTypes.bool,
 };
