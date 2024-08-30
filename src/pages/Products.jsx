@@ -13,6 +13,7 @@ export default function Products() {
   const [showEditModal, setShowEditModal] = useState(false);
   function editProductHandler() {
     console.log("ادیت انجام شد");
+    setShowEditModal((prevShow) => !prevShow);
   }
   function closeEditModal() {
     setShowEditModal((prevShow) => !prevShow);
