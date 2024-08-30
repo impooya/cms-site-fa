@@ -7,6 +7,10 @@ export default function TableProducts({
   changeVisibleDetailsModal,
   changeVisibleEditModal,
   isVisibleEditModal,
+  // eslint-disable-next-line react/prop-types
+  datasProducts,
+  isLoadingdatasProducts,
+  isErrorLoadingProducts,
 }) {
   function showDeleteModalHandler() {
     if (isVisibleDeleteModal) {
@@ -45,63 +49,27 @@ export default function TableProducts({
             </tr>
           </thead>
           <tbody className="text-center divide-y-2">
-            <tr className="child:w-56 child:text-xl">
-              <td>
-                <img src="../image/headphone.jpeg" className="size-64" />
-              </td>
-              <td>هنذفری بلوتوثی</td>
-              <td>200000 تومان</td>
-              <td>134</td>
-              <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button" onClick={showDetailsModalHandler}>
-                  جزییات
-                </button>
-                <button type="button" onClick={showDeleteModalHandler}>
-                  حذف
-                </button>
-                <button type="button" onClick={showEditModalHandler}>
-                  ویرایش
-                </button>
-              </td>
-            </tr>
-            <tr className="child:w-56 child:text-xl">
-              <td>
-                <img src="../image/head.jpeg" className="size-64" />
-              </td>
-              <td>هنذفری بلوتوثی</td>
-              <td>200000 تومان</td>
-              <td>134</td>
-              <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button" onClick={showDetailsModalHandler}>
-                  جزییات
-                </button>
-                <button type="button" onClick={showDeleteModalHandler}>
-                  حذف
-                </button>
-                <button type="button" onClick={showEditModalHandler}>
-                  ویرایش
-                </button>
-              </td>
-            </tr>
-            <tr className="child:w-56 child:text-xl">
-              <td>
-                <img src="../image/charger.jpeg" className="size-64" />
-              </td>
-              <td>هنذفری بلوتوثی</td>
-              <td>200000 تومان</td>
-              <td>134</td>
-              <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button" onClick={showDetailsModalHandler}>
-                  جزییات
-                </button>
-                <button type="button" onClick={showDeleteModalHandler}>
-                  حذف
-                </button>
-                <button type="button" onClick={showEditModalHandler}>
-                  ویرایش
-                </button>
-              </td>
-            </tr>
+            {datasProducts?.map((items) => (
+              <tr className="child:w-56 child:text-xl" key={items.id}>
+                <td>
+                  <img src={`../${items.img}`} className="size-64" />
+                </td>
+                <td>{items.title}</td>
+                <td>{items.price}</td>
+                <td>{items.count}</td>
+                <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
+                  <button type="button" onClick={showDetailsModalHandler}>
+                    جزییات
+                  </button>
+                  <button type="button" onClick={showDeleteModalHandler}>
+                    حذف
+                  </button>
+                  <button type="button" onClick={showEditModalHandler}>
+                    ویرایش
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </section>
