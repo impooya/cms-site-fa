@@ -2,14 +2,17 @@ import { CiCircleAlert } from "react-icons/ci";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 
-export default function Modals({ changeVisibleModal, isVisibleModal }) {
+export default function Modals({
+  changeVisibleDeleteModal,
+  isVisibleDeleteModal,
+}) {
   function deleteProductsHandler() {
-    changeVisibleModal((prevShow) => {
+    changeVisibleDeleteModal((prevShow) => {
       !prevShow;
     });
   }
   function closeDeleteModalHandler() {
-    changeVisibleModal((prevShow) => {
+    changeVisibleDeleteModal((prevShow) => {
       !prevShow;
     });
   }
@@ -18,7 +21,7 @@ export default function Modals({ changeVisibleModal, isVisibleModal }) {
       {createPortal(
         <div
           className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
-            isVisibleModal ? "opacity-100 visible" : "opacity-0 invisible"
+            isVisibleDeleteModal ? "opacity-100 visible" : "opacity-0 invisible"
           } transition-all `}
         >
           <div className="w-[500px] bg-white  flex flex-col justify-center items-center gap-y-6 pb-7 rounded-xl ">
@@ -49,6 +52,6 @@ export default function Modals({ changeVisibleModal, isVisibleModal }) {
 }
 
 Modals.propTypes = {
-  isVisibleModal: PropTypes.bool.isRequired,
-  changeVisibleModal: PropTypes.func.isRequired,
+  isVisibleDeleteModal: PropTypes.bool.isRequired,
+  changeVisibleDeleteModal: PropTypes.func.isRequired,
 };

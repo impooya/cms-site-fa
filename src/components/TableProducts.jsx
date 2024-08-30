@@ -1,11 +1,24 @@
 import PropTypes from "prop-types";
 
-export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
+export default function TableProducts({
+  changeVisibleDeleteModal,
+  isVisibleDeleteModal,
+  isVisibleDetailsModal,
+  changeVisibleDetailsModal,
+}) {
   function showDeleteModalHandler() {
-    if (isVisibleModal) {
-      changeVisibleModal(false);
+    if (isVisibleDeleteModal) {
+      changeVisibleDeleteModal(false);
     } else {
-      changeVisibleModal(true);
+      changeVisibleDeleteModal(true);
+    }
+  }
+
+  function showDetailsModalHandler() {
+    if (isVisibleDetailsModal) {
+      changeVisibleDetailsModal(false);
+    } else {
+      changeVisibleDetailsModal(true);
     }
   }
 
@@ -30,7 +43,9 @@ export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
               <td>200000 تومان</td>
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button">جزییات</button>
+                <button type="button" onClick={showDetailsModalHandler}>
+                  جزییات
+                </button>
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
@@ -45,7 +60,9 @@ export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
               <td>200000 تومان</td>
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button">جزییات</button>
+                <button type="button" onClick={showDetailsModalHandler}>
+                  جزییات
+                </button>
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
@@ -60,7 +77,9 @@ export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
               <td>200000 تومان</td>
               <td>134</td>
               <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                <button type="button">جزییات</button>
+                <button type="button" onClick={showDetailsModalHandler}>
+                  جزییات
+                </button>
                 <button type="button" onClick={showDeleteModalHandler}>
                   حذف
                 </button>
@@ -75,6 +94,8 @@ export default function TableProducts({ changeVisibleModal, isVisibleModal }) {
 }
 
 TableProducts.propTypes = {
-  changeVisibleModal: PropTypes.func.isRequired, // Assuming it's a required function
-  isVisibleModal: PropTypes.bool.isRequired,
+  changeVisibleDeleteModal: PropTypes.func.isRequired, // Assuming it's a required function
+  isVisibleDeleteModal: PropTypes.bool.isRequired,
+  changeVisibleDetailsModal: PropTypes.func.isRequired,
+  isVisibleDetailsModal: PropTypes.bool.isRequired,
 };

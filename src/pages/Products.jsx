@@ -7,19 +7,26 @@ import DetailsModal from "../components/DetailsModal";
 
 export default function Products() {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+
   return (
     <>
       {/* <ErorrMessage msg={"هیج محصولی یافت نشد"} /> */}
       <AddProducts />
       <TableProducts
-        changeVisibleModal={setShowRemoveModal}
-        isVisibleModal={showRemoveModal}
+        changeVisibleDeleteModal={setShowRemoveModal}
+        isVisibleDeleteModal={showRemoveModal}
+        changeVisibleDetailsModal={setShowDetailsModal}
+        isVisibleDetailsModal={showDetailsModal}
       />
       <Modals
-        changeVisibleModal={setShowRemoveModal}
-        isVisibleModal={showRemoveModal}
+        changeVisibleDeleteModal={setShowRemoveModal}
+        isVisibleDeleteModal={showRemoveModal}
       />
-      <DetailsModal />
+      <DetailsModal
+        changeVisibleDetailsModal={setShowDetailsModal}
+        isVisibleDetailsModal={showDetailsModal}
+      />
     </>
   );
 }
