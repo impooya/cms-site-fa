@@ -8,6 +8,11 @@ export default function Modals({ changeVisibleModal, isVisibleModal }) {
       !prevShow;
     });
   }
+  function closeDeleteModalHandler() {
+    changeVisibleModal((prevShow) => {
+      !prevShow;
+    });
+  }
   return (
     <>
       {createPortal(
@@ -30,7 +35,7 @@ export default function Modals({ changeVisibleModal, isVisibleModal }) {
               <button
                 type="button"
                 className=" bg-blue-700 text-white w-24 h-10 text-2xl rounded-xl"
-                onClick={deleteProductsHandler}
+                onClick={closeDeleteModalHandler}
               >
                 خیر
               </button>
