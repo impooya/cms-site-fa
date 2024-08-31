@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export function useGetAllProductsResponse() {
   async function getAllProductsResponse() {
     try {
-      const res = await axios.get("http://localhost:3000/api/products");
+      const res = await axios.get("http://localhost:3000/api/products/");
       return res.data; // Return the data directly
     } catch (err) {
       console.log(err);

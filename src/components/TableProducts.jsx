@@ -8,8 +8,10 @@ export default function TableProducts({
   changeVisibleEditModal,
   isVisibleEditModal,
   datasProducts,
+  productsIdsget,
 }) {
-  function showDeleteModalHandler() {
+  function showDeleteModalHandler(e) {
+    productsIdsget(e.target.getAttribute("data-productsid"));
     if (isVisibleDeleteModal) {
       changeVisibleDeleteModal(false);
     } else {
@@ -58,7 +60,11 @@ export default function TableProducts({
                   <button type="button" onClick={showDetailsModalHandler}>
                     جزییات
                   </button>
-                  <button type="button" onClick={showDeleteModalHandler}>
+                  <button
+                    type="button"
+                    onClick={(event) => showDeleteModalHandler(event)}
+                    data-productsid={items.id}
+                  >
                     حذف
                   </button>
                   <button type="button" onClick={showEditModalHandler}>
@@ -81,6 +87,6 @@ TableProducts.propTypes = {
   isVisibleDetailsModal: PropTypes.bool,
   changeVisibleEditModal: PropTypes.func,
   isVisibleEditModal: PropTypes.bool,
-
+  productsIdsget: PropTypes.func,
   datasProducts: PropTypes.array,
 };

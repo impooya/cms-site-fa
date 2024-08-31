@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 export default function Modals({
   changeVisibleDeleteModal,
   isVisibleDeleteModal,
+  idProducts,
 }) {
   function deleteProductsHandler() {
+    console.log(idProducts);
     changeVisibleDeleteModal((prevShow) => {
       !prevShow;
     });
@@ -54,4 +56,5 @@ export default function Modals({
 Modals.propTypes = {
   isVisibleDeleteModal: PropTypes.bool,
   changeVisibleDeleteModal: PropTypes.func,
+  idProducts: PropTypes.string,
 };
