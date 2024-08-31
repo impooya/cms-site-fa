@@ -1,14 +1,24 @@
 import { CiCircleAlert } from "react-icons/ci";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export default function Modals({
   changeVisibleDeleteModal,
   isVisibleDeleteModal,
   idProducts,
 }) {
+  function deleteProductsApiResponse(idProducts) {
+    axios
+      .delete(`http://localhost:3000/api/products/productID/${idProducts}`)
+      .then((res) => {
+        console.log(res);
+      });
+  }
   function deleteProductsHandler() {
     console.log(idProducts);
+    deleteProductsApiResponse(idProducts);
+
     changeVisibleDeleteModal((prevShow) => {
       !prevShow;
     });
