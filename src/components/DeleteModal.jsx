@@ -2,22 +2,29 @@ import { CiCircleAlert } from "react-icons/ci";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 export default function Modals({
   changeVisibleDeleteModal,
   isVisibleDeleteModal,
   idProducts,
 }) {
-  function deleteProductsApiResponse(idProducts) {
-    axios
-      .delete(`http://localhost:3000/api/products/productID/${idProducts}`)
-      .then((res) => {
-        console.log(res);
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (idProducts) => {
+      axios.delete(`http://localhost:3000/api/products/${idProducts}`);
+    },
+    onSuccess: (_, idProducts) => {
+      const products = queryClient.getQueriesData({ queryKey: ["products"] });
+      const newProducts = products.map((item) => {
+        return item[1].filter((product) => {
+          return product.id !== Number(idProducts);
+        });
       });
-  }
+      queryClient.setQueriesData({ queryKey: ["products"] }, ...newProducts);
+    },
+  });
   function deleteProductsHandler() {
-    console.log(idProducts);
-    deleteProductsApiResponse(idProducts);
+    mutation.mutate(idProducts);
 
     changeVisibleDeleteModal((prevShow) => {
       !prevShow;
