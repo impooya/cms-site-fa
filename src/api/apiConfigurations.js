@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 
 export function useGetAllProductsResponse() {
   async function getAllProductsResponse() {
@@ -15,5 +15,29 @@ export function useGetAllProductsResponse() {
   return useQuery({
     queryKey: ["products"],
     queryFn: getAllProductsResponse,
+  });
+}
+
+export function useRemoveProducts(idProducts) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["removeProduct"],
+    mutationFn: (idProducts) => {
+      return axios({
+        method: "delete",
+        url: `http://localhost:3000/api/products/${idProducts}`,
+      });
+    },
+    onSuccess: () => {
+      const products = queryClient.getQueryData(["products"]) || [];
+      const newProducts = products.filter(
+        (product) => product.id !== Number(idProducts)
+      );
+      queryClient.setQueryData(["products"], newProducts);
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error.message);
+      // Optionally, you can show an error message to the user here
+    },
   });
 }
