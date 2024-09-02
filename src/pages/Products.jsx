@@ -92,7 +92,7 @@ export default function Products() {
                   <input
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
-                    placeholder={`اسم محصول جدید را وارد کنید`}
+                    placeholder={`مبلغ جدید را وارد کنید`}
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -100,7 +100,7 @@ export default function Products() {
                   <input
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
-                    placeholder={`اسم محصول جدید را وارد کنید`}
+                    placeholder={`موجودی محصول جدید را وارد کنید`}
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -108,7 +108,31 @@ export default function Products() {
                   <input
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
-                    placeholder={`اسم محصول جدید را وارد کنید`}
+                    placeholder={`ادرس کاور محصول جدید را وارد کنید`}
+                  />
+                </span>
+                <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
+                  <MdOutlineFiberNew className="text-4xl" />
+                  <input
+                    className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
+                    type="text"
+                    placeholder={`میزان محبوبیت محصول جدید را وارد کنید`}
+                  />
+                </span>
+                <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
+                  <MdOutlineFiberNew className="text-4xl" />
+                  <input
+                    className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
+                    type="text"
+                    placeholder={`میزان فروش محصول جدید را وارد کنید`}
+                  />
+                </span>
+                <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
+                  <MdOutlineFiberNew className="text-4xl" />
+                  <input
+                    className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
+                    type="text"
+                    placeholder={`تعداد رنگ بندی محصول جدید را وارد کنید`}
                   />
                 </span>
               </div>
