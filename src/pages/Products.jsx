@@ -15,6 +15,8 @@ export default function Products() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [getIdProductsForDelete, setGetIdProductsForDelete] = useState("");
   const [getIdProductsForDetails, setGetIdProductsForDetails] = useState("");
+  const [getIdProductsForEdit, setGetIdProductsForEdit] = useState("");
+
   function editProductHandler() {
     console.log("ادیت انجام شد");
     setShowEditModal((prevShow) => !prevShow);
@@ -59,6 +61,7 @@ export default function Products() {
             datasProducts={productsData}
             productsIdsget={setGetIdProductsForDelete}
             productsIdsForGetDetails={setGetIdProductsForDetails}
+            productsIdsForEdit={setGetIdProductsForEdit}
           />
           {/*Delete modals*/}
           <Modals
@@ -85,6 +88,11 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`اسم محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData.find(
+                        (item) => String(item.id) === getIdProductsForEdit
+                      )?.title || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -93,6 +101,13 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`مبلغ جدید را وارد کنید`}
+                    defaultValue={
+                      productsData
+                        .find(
+                          (item) => String(item.id) === getIdProductsForEdit
+                        )
+                        ?.price.toLocaleString() || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -101,6 +116,11 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`موجودی محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData.find(
+                        (item) => String(item.id) === getIdProductsForEdit
+                      )?.count || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -109,6 +129,11 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`ادرس کاور محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData.find(
+                        (item) => String(item.id) === getIdProductsForEdit
+                      )?.img || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -117,6 +142,11 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`میزان محبوبیت محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData.find(
+                        (item) => String(item.id) === getIdProductsForEdit
+                      )?.popularity || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -125,6 +155,13 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`میزان فروش محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData
+                        .find(
+                          (item) => String(item.id) === getIdProductsForEdit
+                        )
+                        ?.sale.toLocaleString() || ""
+                    }
                   />
                 </span>
                 <span className=" bg-zinc-400/50 rounded-2xl  w-full flex justify-center items-center pr-2 ">
@@ -133,6 +170,11 @@ export default function Products() {
                     className=" placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                     type="text"
                     placeholder={`تعداد رنگ بندی محصول جدید را وارد کنید`}
+                    defaultValue={
+                      productsData.find(
+                        (item) => String(item.id) === getIdProductsForEdit
+                      )?.colors || ""
+                    }
                   />
                 </span>
               </div>

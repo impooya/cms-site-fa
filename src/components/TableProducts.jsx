@@ -10,6 +10,7 @@ export default function TableProducts({
   datasProducts,
   productsIdsget,
   productsIdsForGetDetails,
+  productsIdsForEdit,
 }) {
   function showDeleteModalHandler(e) {
     productsIdsget(e.target.getAttribute("data-productsid"));
@@ -29,7 +30,9 @@ export default function TableProducts({
     }
   }
 
-  function showEditModalHandler() {
+  function showEditModalHandler(e) {
+    productsIdsForEdit(e.target.getAttribute("data-products-edit-id"));
+    // console.log(e.target.getAttribute("data-products-edit-id"));
     if (isVisibleEditModal) {
       changeVisibleEditModal(false);
     } else {
@@ -75,7 +78,13 @@ export default function TableProducts({
                   >
                     حذف
                   </button>
-                  <button type="button" onClick={showEditModalHandler}>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      showEditModalHandler(event);
+                    }}
+                    data-products-edit-id={items.id}
+                  >
                     ویرایش
                   </button>
                 </td>
@@ -98,4 +107,5 @@ TableProducts.propTypes = {
   productsIdsget: PropTypes.func,
   datasProducts: PropTypes.array,
   productsIdsForGetDetails: PropTypes.func,
+  productsIdsForEdit: PropTypes.func,
 };
