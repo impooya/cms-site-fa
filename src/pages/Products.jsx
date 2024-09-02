@@ -118,10 +118,7 @@ export default function Products() {
             isVisibleDetailsModal={showDetailsModal}
             idProductsDetails={getIdProductsForDetails}
           />
-          <EditModal
-            onSubmitEdit={editProductHandler}
-            isdiscardEdit={showEditModal}
-          >
+          <EditModal isdiscardEdit={showEditModal}>
             <section className="w-full flex flex-col justify-center items-center gap-4 py-3 px-3 ">
               <h1 className="text-3xl">مقادیر جدید را وارد کنید</h1>
               <div className="w-full flex flex-col gap-6 justify-center items-center">

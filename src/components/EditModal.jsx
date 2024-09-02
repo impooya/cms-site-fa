@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 
 // eslint-disable-next-line react/prop-types
-function EditModal({ children, onSubmitEdit, isdiscardEdit }) {
+function EditModal({ children, isdiscardEdit }) {
   return (
     <>
       {createPortal(
@@ -14,7 +14,6 @@ function EditModal({ children, onSubmitEdit, isdiscardEdit }) {
             className="bg-white w-[400px] rounded-2xl"
             onSubmit={(e) => {
               e.preventDefault();
-              onSubmitEdit();
             }}
           >
             {children}
