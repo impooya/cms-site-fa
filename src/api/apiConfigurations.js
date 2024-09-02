@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-
+//GET Request For Products
 export function useGetAllProductsResponse() {
   async function getAllProductsResponse() {
     try {
@@ -18,6 +18,7 @@ export function useGetAllProductsResponse() {
   });
 }
 
+//DELETE Request For Products
 export function useRemoveProducts(idProducts) {
   const queryClient = useQueryClient();
   return useMutation({
@@ -38,6 +39,21 @@ export function useRemoveProducts(idProducts) {
     onError: (error) => {
       console.error("Error deleting product:", error.message);
       // Optionally, you can show an error message to the user here
+    },
+  });
+}
+
+export function useUpdateProduct(getIdProductsForEdit) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (newInfoProducts) => {
+      return axios.put(
+        `http://localhost:3000/api/products/${getIdProductsForEdit}`,
+        newInfoProducts
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 }
