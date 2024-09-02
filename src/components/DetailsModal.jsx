@@ -1,11 +1,14 @@
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import PropTypes from "prop-types";
+import { useGetAllProductsResponse } from "../api/apiConfigurations";
 
 export default function DetailsModal({
   isVisibleDetailsModal,
   changeVisibleDetailsModal,
+  idProductsDetails,
 }) {
+  const { data: detailsProduct } = useGetAllProductsResponse();
   function closeDetailsModalHandler() {
     changeVisibleDetailsModal((prevShow) => {
       !prevShow;
@@ -38,11 +41,19 @@ export default function DetailsModal({
                 </tr>
               </thead>
               <tbody className="text-center">
-                <tr>
-                  <td>لپ تاپ</td>
-                  <td>22000000</td>
-                  <td>91%</td>
-                </tr>
+                {detailsProduct?.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      {item.id === Number(idProductsDetails) && item.title}
+                    </td>
+                    <td>
+                      {item.id === Number(idProductsDetails) && item.price}
+                    </td>
+                    <td>
+                      {item.id === Number(idProductsDetails) && item.popularity}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </section>
@@ -55,4 +66,6 @@ export default function DetailsModal({
 DetailsModal.propTypes = {
   changeVisibleDetailsModal: PropTypes.func,
   isVisibleDetailsModal: PropTypes.bool,
+  idProductsDetails: PropTypes.string,
+  datasProducts: PropTypes.array,
 };

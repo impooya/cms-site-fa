@@ -16,6 +16,7 @@
   body,
   html {
     font-family: Lalezar;
+    scroll-behavior: smooth;
   }
 
   /* :root {

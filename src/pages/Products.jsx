@@ -13,7 +13,8 @@ export default function Products() {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [getIdProducts, setGetIdProducts] = useState("");
+  const [getIdProductsForDelete, setGetIdProductsForDelete] = useState("");
+  const [getIdProductsForDetails, setGetIdProductsForDetails] = useState("");
   function editProductHandler() {
     console.log("ادیت انجام شد");
     setShowEditModal((prevShow) => !prevShow);
@@ -56,17 +57,19 @@ export default function Products() {
             changeVisibleEditModal={setShowEditModal}
             isVisibleEditModal={showEditModal}
             datasProducts={productsData}
-            productsIdsget={setGetIdProducts}
+            productsIdsget={setGetIdProductsForDelete}
+            productsIdsForGetDetails={setGetIdProductsForDetails}
           />
           {/*Delete modals*/}
           <Modals
             changeVisibleDeleteModal={setShowRemoveModal}
             isVisibleDeleteModal={showRemoveModal}
-            idProducts={getIdProducts}
+            idProducts={getIdProductsForDelete}
           />
           <DetailsModal
             changeVisibleDetailsModal={setShowDetailsModal}
             isVisibleDetailsModal={showDetailsModal}
+            idProductsDetails={getIdProductsForDetails}
           />
           <EditModal
             onSubmitEdit={editProductHandler}

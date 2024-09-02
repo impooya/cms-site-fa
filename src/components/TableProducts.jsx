@@ -9,6 +9,7 @@ export default function TableProducts({
   isVisibleEditModal,
   datasProducts,
   productsIdsget,
+  productsIdsForGetDetails,
 }) {
   function showDeleteModalHandler(e) {
     productsIdsget(e.target.getAttribute("data-productsid"));
@@ -19,7 +20,8 @@ export default function TableProducts({
     }
   }
 
-  function showDetailsModalHandler() {
+  function showDetailsModalHandler(e) {
+    productsIdsForGetDetails(e.target.getAttribute("data-products-details-id"));
     if (isVisibleDetailsModal) {
       changeVisibleDetailsModal(false);
     } else {
@@ -57,7 +59,13 @@ export default function TableProducts({
                 <td>{items.price}</td>
                 <td>{items.count}</td>
                 <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                  <button type="button" onClick={showDetailsModalHandler}>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      showDetailsModalHandler(event);
+                    }}
+                    data-products-details-id={items.id}
+                  >
                     جزییات
                   </button>
                   <button
@@ -89,4 +97,5 @@ TableProducts.propTypes = {
   isVisibleEditModal: PropTypes.bool,
   productsIdsget: PropTypes.func,
   datasProducts: PropTypes.array,
+  productsIdsForGetDetails: PropTypes.func,
 };
