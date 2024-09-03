@@ -18,15 +18,7 @@ export default function AddProducts() {
   const [popularityProduct, setPopularityProduct] = useState("");
   const [saleProduct, setSaleProduct] = useState("");
   const [colorsProduct, setColorsProduct] = useState("");
-  const newInfoProducts = {
-    title: titleProduct,
-    price: priceProduct,
-    count: countProduct,
-    img: imgProduct,
-    popularity: popularityProduct,
-    sale: saleProduct,
-    colors: colorsProduct,
-  };
+
   const queryClient = useQueryClient();
   const { mutate: addProduct } = useMutation({
     mutationFn: (newInfoProducts) => {
@@ -34,6 +26,13 @@ export default function AddProducts() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["products"]);
+      setTitleProduct("");
+      setPriceProduct("");
+      setCountProduct("");
+      setImgProduct("");
+      setPopularityProduct("");
+      setSaleProduct("");
+      setColorsProduct("");
     },
     onError: (err) => {
       console.log(err);
@@ -41,6 +40,16 @@ export default function AddProducts() {
   });
 
   function addNewProductHandler(e) {
+    e.preventDefault();
+    const newInfoProducts = {
+      title: titleProduct,
+      price: priceProduct,
+      count: countProduct,
+      img: imgProduct,
+      popularity: popularityProduct,
+      sale: saleProduct,
+      colors: colorsProduct,
+    };
     if (
       titleProduct &&
       priceProduct &&
@@ -54,17 +63,13 @@ export default function AddProducts() {
     } else {
       alert("مفادیر مورد نیاز وارد کنید");
     }
-    e.preventDefault();
   }
 
   return (
     <>
       <section className="flex flex-col justify-start items-start gap-y-6">
         <h1 className="text-3xl">افزودن محصول جدید</h1>
-        <form
-          className="w-full bg-white p-9 rounded-2xl shadow-2xl"
-          onSubmit={(event) => addNewProductHandler(event)}
-        >
+        <form className="w-full bg-white p-9 rounded-2xl shadow-2xl">
           <section className="w-full flex flex-col items-end gap-y-4">
             <div className="flex w-full justify-start  items-center  gap-x-4">
               <span className="flex  justify-center items-center gap-3 h-14 w-1/2 text-2xl bg-zinc-400/50 rounded-2xl pr-5">
@@ -162,6 +167,7 @@ export default function AddProducts() {
             <button
               type="submit"
               className="bg-blue-700 w-32 h-11 text-white rounded-lg"
+              onClick={(event) => addNewProductHandler(event)}
             >
               ثبت محصول
             </button>
