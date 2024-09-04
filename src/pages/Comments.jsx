@@ -10,6 +10,8 @@ import DeleteModals from "../components/DeleteModal";
 export default function Comments() {
   const [showDatailsModalForComments, setShowDetailsModalForComments] =
     useState(false);
+  const [showDeleteModalForComments, setShowDeleteModalForComments] =
+    useState(false);
   const [whichPage, setWhichPage] = useContext(ModalsContext);
   const whichPageName = useLoaderData();
   const [commnetId, setCommentId] = useState(null);
@@ -28,7 +30,10 @@ export default function Comments() {
     setCommentId(id);
     setShowDetailsModalForComments((prevShow) => !prevShow);
   }
-
+  function commentDeleteHandler(id) {
+    setCommentId(id);
+    setShowDeleteModalForComments((prevShow) => !prevShow);
+  }
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
   }
@@ -69,7 +74,15 @@ export default function Comments() {
 
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white  space-y-4">
                     <button type="button">تایید</button>
-                    <button type="button">حذف</button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        commentDeleteHandler(comment.id);
+                        console.log(comment.id);
+                      }}
+                    >
+                      حذف
+                    </button>
                     <button type="button">ویرایش</button>
                     <button type="button">پاسخ</button>
                   </td>
@@ -87,7 +100,11 @@ export default function Comments() {
         idCommentsDetails={commnetId}
         allComments={comments}
       />
-      <DeleteModals />
+      <DeleteModals
+        isVisibleDeleteModalForComments={showDeleteModalForComments}
+        changeVisibleDeleteModalForComments={setShowDeleteModalForComments}
+        idCommentsDelete={commnetId}
+      />
     </>
   );
 }

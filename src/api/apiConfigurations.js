@@ -40,7 +40,6 @@ export function useRemoveProducts(idProducts) {
     },
     onError: (error) => {
       console.error("Error deleting product:", error.message);
-      // Optionally, you can show an error message to the user here
     },
   });
 }
@@ -70,5 +69,21 @@ export function useGetAllCommenstResponse() {
   return useQuery({
     queryKey: ["comments"],
     queryFn: getAllCommentsResponse,
+  });
+}
+
+//DELETE Request For Comments
+export function useRemoveComments() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["removeComments"],
+    mutationFn: (idCommentsDelete) => {
+      return axios.delete(
+        `http://localhost:3000/api/comments/${idCommentsDelete}`
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["comments"] });
+    },
   });
 }
