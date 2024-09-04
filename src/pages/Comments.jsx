@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ModalsContext } from "../context/ModalContext";
 import { useLoaderData } from "react-router-dom";
 import DetailsModal from "../components/DetailsModal";
+import DeleteModals from "../components/DeleteModal";
 
 export default function Comments() {
   const [showDatailsModalForComments, setShowDetailsModalForComments] =
@@ -86,6 +87,7 @@ export default function Comments() {
         idCommentsDetails={commnetId}
         allComments={comments}
       />
+      <DeleteModals />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import ErorrMessage from "../components/ErorrMessage";
 import { useState, useEffect, useContext } from "react";
-
 import AddProducts from "../components/AddProducts";
 import DeleteModals from "../components/DeleteModal";
 import { ModalsContext } from "../context/ModalContext";
@@ -108,8 +107,8 @@ export default function Products() {
       ) : (
         <>
           <TableProducts
-            changeVisibleDeleteModal={setShowRemoveModalForProducts}
-            isVisibleDeleteModal={showRemoveModalForProducts}
+            changeVisibleDeleteModalForProducts={setShowRemoveModalForProducts}
+            isVisibleDeleteModalForProducts={showRemoveModalForProducts}
             changeVisibleDetailsModalForProducts={
               setShowDetailsModalForProducts
             }
@@ -123,8 +122,8 @@ export default function Products() {
           />
 
           <DeleteModals
-            changeVisibleDeleteModal={setShowRemoveModalForProducts}
-            isVisibleDeleteModal={showRemoveModalForProducts}
+            changeVisibleDeleteModalForProducts={setShowRemoveModalForProducts}
+            isVisibleDeleteModalForProducts={showRemoveModalForProducts}
             idProducts={getIdProductsForDelete}
           />
           <DetailsModal

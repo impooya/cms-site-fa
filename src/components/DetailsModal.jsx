@@ -30,7 +30,7 @@ export default function DetailsModal({
 
   return (
     <>
-      {whichPage === "products" && whichPage !== "root"
+      {whichPage === "products"
         ? createPortal(
             <div
               className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
@@ -76,7 +76,7 @@ export default function DetailsModal({
             </div>,
             document.querySelector("#modals-parent")
           )
-        : whichPage === "comments" && whichPage !== "root"
+        : whichPage === "comments"
         ? createPortal(
             <div
               className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${

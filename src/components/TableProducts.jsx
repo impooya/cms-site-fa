@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
 export default function TableProducts({
-  changeVisibleDeleteModal,
-  isVisibleDeleteModal,
+  changeVisibleDeleteModalForProducts,
+  isVisibleDeleteModalForProducts,
   isVisibleDetailsModalForProducts,
   changeVisibleDetailsModalForProducts,
   changeVisibleEditModal,
@@ -14,10 +14,10 @@ export default function TableProducts({
 }) {
   function showDeleteModalHandler(e) {
     productsIdsget(e.target.getAttribute("data-productsid"));
-    if (isVisibleDeleteModal) {
-      changeVisibleDeleteModal(false);
+    if (isVisibleDeleteModalForProducts) {
+      changeVisibleDeleteModalForProducts(false);
     } else {
-      changeVisibleDeleteModal(true);
+      changeVisibleDeleteModalForProducts(true);
     }
   }
 
@@ -98,8 +98,8 @@ export default function TableProducts({
 }
 
 TableProducts.propTypes = {
-  changeVisibleDeleteModal: PropTypes.func,
-  isVisibleDeleteModal: PropTypes.bool,
+  changeVisibleDeleteModalForProducts: PropTypes.func,
+  isVisibleDeleteModalForProducts: PropTypes.bool,
   changeVisibleDetailsModalForProducts: PropTypes.func,
   isVisibleDetailsModalForProducts: PropTypes.bool,
   changeVisibleEditModal: PropTypes.func,
