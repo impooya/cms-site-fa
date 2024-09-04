@@ -14,15 +14,17 @@ import { useUpdateProduct } from "../api/apiConfigurations";
 import { useLoaderData } from "react-router-dom";
 
 export default function Products() {
-  const [setWichPage, whichPage] = useContext(ModalsContext);
-  const test = useLoaderData();
+  const [whichPage, setWhichPage] = useContext(ModalsContext);
+  const whichPageName = useLoaderData();
   useEffect(() => {
-    setWichPage(test);
+    setWhichPage(whichPageName);
   }),
-    [whichPage, test];
+    [whichPage, whichPageName];
 
-  const [showRemoveModal, setShowRemoveModal] = useState(false);
-  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showRemoveModalForProducts, setShowRemoveModalForProducts] =
+    useState(false);
+  const [showDetailsModalForProducts, setShowDetailsModalForProducts] =
+    useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [getIdProductsForDelete, setGetIdProductsForDelete] = useState("");
   const [getIdProductsForDetails, setGetIdProductsForDetails] = useState("");
@@ -106,10 +108,12 @@ export default function Products() {
       ) : (
         <>
           <TableProducts
-            changeVisibleDeleteModal={setShowRemoveModal}
-            isVisibleDeleteModal={showRemoveModal}
-            changeVisibleDetailsModal={setShowDetailsModal}
-            isVisibleDetailsModal={showDetailsModal}
+            changeVisibleDeleteModal={setShowRemoveModalForProducts}
+            isVisibleDeleteModal={showRemoveModalForProducts}
+            changeVisibleDetailsModalForProducts={
+              setShowDetailsModalForProducts
+            }
+            isVisibleDetailsModalForProducts={showDetailsModalForProducts}
             changeVisibleEditModal={setShowEditModal}
             isVisibleEditModal={showEditModal}
             datasProducts={productsData}
@@ -117,15 +121,17 @@ export default function Products() {
             productsIdsForGetDetails={setGetIdProductsForDetails}
             productsIdsForEdit={setGetIdProductsForEdit}
           />
-          {/* Delete DeleteModals */}
+
           <DeleteModals
-            changeVisibleDeleteModal={setShowRemoveModal}
-            isVisibleDeleteModal={showRemoveModal}
+            changeVisibleDeleteModal={setShowRemoveModalForProducts}
+            isVisibleDeleteModal={showRemoveModalForProducts}
             idProducts={getIdProductsForDelete}
           />
           <DetailsModal
-            changeVisibleDetailsModal={setShowDetailsModal}
-            isVisibleDetailsModal={showDetailsModal}
+            changeVisibleDetailsModalForProducts={
+              setShowDetailsModalForProducts
+            }
+            isVisibleDetailsModalForProducts={showDetailsModalForProducts}
             idProductsDetails={getIdProductsForDetails}
           />
           <EditModal isdiscardEdit={showEditModal}>

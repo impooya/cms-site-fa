@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 export default function TableProducts({
   changeVisibleDeleteModal,
   isVisibleDeleteModal,
-  isVisibleDetailsModal,
-  changeVisibleDetailsModal,
+  isVisibleDetailsModalForProducts,
+  changeVisibleDetailsModalForProducts,
   changeVisibleEditModal,
   isVisibleEditModal,
   datasProducts,
@@ -21,12 +21,12 @@ export default function TableProducts({
     }
   }
 
-  function showDetailsModalHandler(e) {
+  function showDetailsModalForProductsHandler(e) {
     productsIdsForGetDetails(e.target.getAttribute("data-products-details-id"));
-    if (isVisibleDetailsModal) {
-      changeVisibleDetailsModal(false);
+    if (isVisibleDetailsModalForProducts) {
+      changeVisibleDetailsModalForProducts(false);
     } else {
-      changeVisibleDetailsModal(true);
+      changeVisibleDetailsModalForProducts(true);
     }
   }
 
@@ -65,7 +65,7 @@ export default function TableProducts({
                   <button
                     type="button"
                     onClick={(event) => {
-                      showDetailsModalHandler(event);
+                      showDetailsModalForProductsHandler(event);
                     }}
                     data-products-details-id={items.id}
                   >
@@ -100,8 +100,8 @@ export default function TableProducts({
 TableProducts.propTypes = {
   changeVisibleDeleteModal: PropTypes.func,
   isVisibleDeleteModal: PropTypes.bool,
-  changeVisibleDetailsModal: PropTypes.func,
-  isVisibleDetailsModal: PropTypes.bool,
+  changeVisibleDetailsModalForProducts: PropTypes.func,
+  isVisibleDetailsModalForProducts: PropTypes.bool,
   changeVisibleEditModal: PropTypes.func,
   isVisibleEditModal: PropTypes.bool,
   productsIdsget: PropTypes.func,

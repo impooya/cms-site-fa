@@ -2,70 +2,128 @@ import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import PropTypes from "prop-types";
 import { useGetAllProductsResponse } from "../api/apiConfigurations";
+import { useContext } from "react";
+import { ModalsContext } from "../context/ModalContext";
 
 export default function DetailsModal({
-  isVisibleDetailsModal,
-  changeVisibleDetailsModal,
+  isVisibleDetailsModalForProducts,
+  changeVisibleDetailsModalForProducts,
   idProductsDetails,
+  isVisibleDetailsModalForComments,
+  changeVisibleDetailsModalForComments,
+  idCommentsDetails,
+  allComments,
 }) {
+  const [whichPage] = useContext(ModalsContext);
+
   const { data: detailsProduct } = useGetAllProductsResponse();
-  function closeDetailsModalHandler() {
-    changeVisibleDetailsModal((prevShow) => {
+  function closeDetailsModalForProductsHandler() {
+    changeVisibleDetailsModalForProducts((prevShow) => {
       !prevShow;
     });
   }
+  function closeDetailsModalForCommentsHandler() {
+    changeVisibleDetailsModalForComments((prevShow) => {
+      !prevShow;
+    });
+  }
+
   return (
     <>
-      {createPortal(
-        <div
-          className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
-            isVisibleDetailsModal
-              ? "opacity-100 visible"
-              : "opacity-0 invisible"
-          } transition-all `}
-        >
-          <section className="bg-white w-1/6 rounded-2xl flex flex-col mb-3">
-            <button
-              type="button"
-              className="mr-3 mt-3 child:size-6 child:text-red-600 w-6"
-              onClick={closeDetailsModalHandler}
+      {whichPage === "products" && whichPage !== "root"
+        ? createPortal(
+            <div
+              className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
+                isVisibleDetailsModalForProducts
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              } transition-all `}
             >
-              <IoCloseCircleOutline />
-            </button>
-            <table className="w-full table-fixed mt-5">
-              <thead className="text-center">
-                <tr>
-                  <th>اسم</th>
-                  <th>قیمت</th>
-                  <th>محبوبیت</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">
-                {detailsProduct?.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      {item.id === Number(idProductsDetails) && item.title}
-                    </td>
-                    <td>
-                      {item.id === Number(idProductsDetails) && item.price}
-                    </td>
-                    <td>
-                      {item.id === Number(idProductsDetails) && item.popularity}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        </div>,
-        document.querySelector("#modals-parent")
-      )}
+              <section className="bg-white w-1/6 rounded-2xl flex flex-col mb-3">
+                <button
+                  type="button"
+                  className="mr-3 mt-3 child:size-6 child:text-red-600 w-6"
+                  onClick={closeDetailsModalForProductsHandler}
+                >
+                  <IoCloseCircleOutline />
+                </button>
+                <table className="w-full table-fixed mt-5">
+                  <thead className="text-center">
+                    <tr>
+                      <th>اسم</th>
+                      <th>قیمت</th>
+                      <th>محبوبیت</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-center">
+                    {detailsProduct?.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          {item.id === Number(idProductsDetails) && item.title}
+                        </td>
+                        <td>
+                          {item.id === Number(idProductsDetails) && item.price}
+                        </td>
+                        <td>
+                          {item.id === Number(idProductsDetails) &&
+                            item.popularity}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            </div>,
+            document.querySelector("#modals-parent")
+          )
+        : whichPage === "comments" && whichPage !== "root"
+        ? createPortal(
+            <div
+              className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
+                isVisibleDetailsModalForComments
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              } transition-all `}
+            >
+              <section className="bg-white w-1/6 rounded-2xl flex flex-col mb-3">
+                <button
+                  type="button"
+                  className="mr-3 mt-3 child:size-6 child:text-red-600 w-6"
+                  onClick={closeDetailsModalForCommentsHandler}
+                >
+                  <IoCloseCircleOutline />
+                </button>
+                <table className="w-full table-fixed mt-5">
+                  <thead className="text-center">
+                    <tr>
+                      <th>متن</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-center">
+                    {allComments?.map((comment) => (
+                      <tr key={comment.id}>
+                        <td>
+                          {comment.id === idCommentsDetails && comment.body}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            </div>,
+            document.querySelector("#modals-parent")
+          )
+        : null}
     </>
   );
 }
 DetailsModal.propTypes = {
-  changeVisibleDetailsModal: PropTypes.func,
-  isVisibleDetailsModal: PropTypes.bool,
+  changeVisibleDetailsModalForProducts: PropTypes.func,
+  isVisibleDetailsModalForProducts: PropTypes.bool,
   idProductsDetails: PropTypes.string,
   datasProducts: PropTypes.array,
+  isVisibleDetailsModalForComments: PropTypes.bool,
+  changeVisibleDetailsModalForComments: PropTypes.func,
+  idCommentsDetails: PropTypes.number,
+  allComments: PropTypes.array,
 };

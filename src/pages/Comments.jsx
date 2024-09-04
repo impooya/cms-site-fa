@@ -1,17 +1,21 @@
 import ErorrMessage from "../components/ErorrMessage";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useGetAllCommenstResponse } from "../api/apiConfigurations";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalsContext } from "../context/ModalContext";
 import { useLoaderData } from "react-router-dom";
+import DetailsModal from "../components/DetailsModal";
 
 export default function Comments() {
-  const [setWichPage, whichPage] = useContext(ModalsContext);
-  const test = useLoaderData();
+  const [showDatailsModalForComments, setShowDetailsModalForComments] =
+    useState(false);
+  const [whichPage, setWhichPage] = useContext(ModalsContext);
+  const whichPageName = useLoaderData();
+  const [commnetId, setCommentId] = useState(null);
   useEffect(() => {
-    setWichPage(test);
+    setWhichPage(whichPageName);
   }),
-    [whichPage, test];
+    [whichPage, whichPageName];
   const {
     data: comments,
     error,
@@ -20,9 +24,8 @@ export default function Comments() {
   } = useGetAllCommenstResponse();
 
   function commentDetailsHandler(id) {
-    let commnetId;
-    commnetId = id;
-    console.log(commnetId);
+    setCommentId(id);
+    setShowDetailsModalForComments((prevShow) => !prevShow);
   }
 
   if (isLoading) {
@@ -77,6 +80,12 @@ export default function Comments() {
       ) : (
         <ErorrMessage msg={"هیچ پیامی یافت نشد"} />
       )}
+      <DetailsModal
+        isVisibleDetailsModalForComments={showDatailsModalForComments}
+        changeVisibleDetailsModalForComments={setShowDetailsModalForComments}
+        idCommentsDetails={commnetId}
+        allComments={comments}
+      />
     </>
   );
 }

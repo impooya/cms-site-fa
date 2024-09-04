@@ -4,11 +4,10 @@ import PropTypes from "prop-types";
 export const ModalsContext = createContext();
 
 export function ModalProvider({ children }) {
-  const [whichPage, setWichPage] = useState("root");
-  console.log(whichPage);
+  const [whichPage, setWhichPage] = useState("root");
 
   return (
-    <ModalsContext.Provider value={[setWichPage, whichPage]}>
+    <ModalsContext.Provider value={[whichPage, setWhichPage]}>
       {children}
     </ModalsContext.Provider>
   );
