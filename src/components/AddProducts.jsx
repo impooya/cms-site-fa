@@ -19,26 +19,6 @@ export default function AddProducts() {
   const [saleProduct, setSaleProduct] = useState("");
   const [colorsProduct, setColorsProduct] = useState("");
 
-  // const queryClient = useQueryClient();
-  // const { mutate: addProduct } = useMutation({
-  //   mutationFn: (newInfoProducts) => {
-  //     return axios.post("http://localhost:8000/api/products", newInfoProducts);
-  //   },
-  //   onSuccess: (res) => {
-  //     console.log(res);
-  //     queryClient.invalidateQueries(["products"]);
-  //     setTitleProduct("");
-  //     setPriceProduct("");
-  //     setCountProduct("");
-  //     setImgProduct("");
-  //     setPopularityProduct("");
-  //     setSaleProduct("");
-  //     setColorsProduct("");
-  //   },
-  //   onError: (err) => {
-  //     console.log(err);
-  //   },
-  // });
   const { mutate: addProduct } = usePostProduct(
     setTitleProduct,
     setPriceProduct,
