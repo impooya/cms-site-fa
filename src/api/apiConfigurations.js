@@ -1,3 +1,5 @@
+//in this file make custom hooks for GET,DELETE,POST,PUT methodes for API RESPONSE FROM BACK-END
+
 import axios from "axios";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 //GET Request For Products
@@ -42,7 +44,7 @@ export function useRemoveProducts(idProducts) {
     },
   });
 }
-
+//UPDATE Request For Products
 export function useUpdateProduct(getIdProductsForEdit) {
   const queryClient = useQueryClient();
   return useMutation({
@@ -55,5 +57,18 @@ export function useUpdateProduct(getIdProductsForEdit) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
+  });
+}
+
+//GET Request For Comments
+export function useGetAllCommenstResponse() {
+  async function getAllCommentsResponse() {
+    const res = await axios.get("http://localhost:3000/api/comments/");
+    return res.data; // Return res.data
+  }
+
+  return useQuery({
+    queryKey: ["comments"],
+    queryFn: getAllCommentsResponse,
   });
 }

@@ -1,23 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import ErorrMessage from "../components/ErorrMessage";
 import ClipLoader from "react-spinners/ClipLoader";
-import axios from "axios";
+import { useGetAllCommenstResponse } from "../api/apiConfigurations";
 
 export default function Comments() {
-  async function getAllCommentsResponse() {
-    const res = await axios.get("http://localhost:3000/api/comments/");
-    return res.data; // Return res.data
-  }
-
   const {
     data: comments,
     error,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ["comments"],
-    queryFn: getAllCommentsResponse,
-  });
+  } = useGetAllCommenstResponse();
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
   }
