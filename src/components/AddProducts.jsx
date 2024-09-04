@@ -22,9 +22,10 @@ export default function AddProducts() {
   const queryClient = useQueryClient();
   const { mutate: addProduct } = useMutation({
     mutationFn: (newInfoProducts) => {
-      return axios.post("http://localhost:3000/api/products/", newInfoProducts);
+      return axios.post("http://localhost:3000/api/products", newInfoProducts);
     },
-    onSuccess: () => {
+    onSuccess: (res) => {
+      console.log(res);
       queryClient.invalidateQueries(["products"]);
       setTitleProduct("");
       setPriceProduct("");
