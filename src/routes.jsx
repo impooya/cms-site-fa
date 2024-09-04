@@ -19,10 +19,16 @@ export const routes = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+        loader: () => {
+          return "products";
+        },
       },
       {
         path: "/comments",
         element: <Comments />,
+        loader: () => {
+          return "comments";
+        },
       },
       {
         path: "/users",

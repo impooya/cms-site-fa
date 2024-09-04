@@ -1,7 +1,9 @@
 import ErorrMessage from "../components/ErorrMessage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
 import AddProducts from "../components/AddProducts";
-import Modals from "../components/DeleteModal";
+import DeleteModals from "../components/DeleteModal";
+import { ModalsContext } from "../context/ModalContext";
 import TableProducts from "../components/TableProducts";
 import DetailsModal from "../components/DetailsModal";
 import EditModal from "../components/EditModal";
@@ -9,8 +11,16 @@ import { MdOutlineFiberNew } from "react-icons/md";
 import { useGetAllProductsResponse } from "../api/apiConfigurations";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useUpdateProduct } from "../api/apiConfigurations";
+import { useLoaderData } from "react-router-dom";
 
 export default function Products() {
+  const [setWichPage, whichPage] = useContext(ModalsContext);
+  const test = useLoaderData();
+  useEffect(() => {
+    setWichPage(test);
+  }),
+    [whichPage, test];
+
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -107,8 +117,8 @@ export default function Products() {
             productsIdsForGetDetails={setGetIdProductsForDetails}
             productsIdsForEdit={setGetIdProductsForEdit}
           />
-          {/* Delete modals */}
-          <Modals
+          {/* Delete DeleteModals */}
+          <DeleteModals
             changeVisibleDeleteModal={setShowRemoveModal}
             isVisibleDeleteModal={showRemoveModal}
             idProducts={getIdProductsForDelete}

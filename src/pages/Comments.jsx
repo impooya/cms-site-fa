@@ -1,14 +1,30 @@
 import ErorrMessage from "../components/ErorrMessage";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useGetAllCommenstResponse } from "../api/apiConfigurations";
+import { useContext, useEffect } from "react";
+import { ModalsContext } from "../context/ModalContext";
+import { useLoaderData } from "react-router-dom";
 
 export default function Comments() {
+  const [setWichPage, whichPage] = useContext(ModalsContext);
+  const test = useLoaderData();
+  useEffect(() => {
+    setWichPage(test);
+  }),
+    [whichPage, test];
   const {
     data: comments,
     error,
     isLoading,
     isError,
   } = useGetAllCommenstResponse();
+
+  function commentDetailsHandler(id) {
+    let commnetId;
+    commnetId = id;
+    console.log(commnetId);
+  }
+
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
   }
@@ -37,7 +53,12 @@ export default function Comments() {
                   <td>{comment.productID}</td>
 
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
-                    <button type="button">دیدن متن</button>
+                    <button
+                      type="button"
+                      onClick={() => commentDetailsHandler(comment.id)}
+                    >
+                      دیدن متن
+                    </button>
                   </td>
                   <td>{comment.date}</td>
                   <td>{comment.hour}</td>

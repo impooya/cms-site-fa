@@ -2,7 +2,7 @@ import { CiCircleAlert } from "react-icons/ci";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { useRemoveProducts } from "../api/apiConfigurations";
-export default function Modals({
+export default function DeleteModals({
   changeVisibleDeleteModal,
   isVisibleDeleteModal,
   idProducts,
@@ -56,7 +56,7 @@ export default function Modals({
   );
 }
 
-Modals.propTypes = {
+DeleteModals.propTypes = {
   isVisibleDeleteModal: PropTypes.bool.isRequired,
   changeVisibleDeleteModal: PropTypes.func.isRequired,
   idProducts: PropTypes.string.isRequired,
