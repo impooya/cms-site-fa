@@ -6,8 +6,8 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { IoAnalyticsSharp } from "react-icons/io5";
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+
+import { usePostProduct } from "../api/apiConfigurations";
 
 export default function AddProducts() {
   // State for new product details
@@ -19,37 +19,46 @@ export default function AddProducts() {
   const [saleProduct, setSaleProduct] = useState("");
   const [colorsProduct, setColorsProduct] = useState("");
 
-  const queryClient = useQueryClient();
-  const { mutate: addProduct } = useMutation({
-    mutationFn: (newInfoProducts) => {
-      return axios.post("http://localhost:3000/api/products", newInfoProducts);
-    },
-    onSuccess: (res) => {
-      console.log(res);
-      queryClient.invalidateQueries(["products"]);
-      setTitleProduct("");
-      setPriceProduct("");
-      setCountProduct("");
-      setImgProduct("");
-      setPopularityProduct("");
-      setSaleProduct("");
-      setColorsProduct("");
-    },
-    onError: (err) => {
-      console.log(err);
-    },
-  });
+  // const queryClient = useQueryClient();
+  // const { mutate: addProduct } = useMutation({
+  //   mutationFn: (newInfoProducts) => {
+  //     return axios.post("http://localhost:8000/api/products", newInfoProducts);
+  //   },
+  //   onSuccess: (res) => {
+  //     console.log(res);
+  //     queryClient.invalidateQueries(["products"]);
+  //     setTitleProduct("");
+  //     setPriceProduct("");
+  //     setCountProduct("");
+  //     setImgProduct("");
+  //     setPopularityProduct("");
+  //     setSaleProduct("");
+  //     setColorsProduct("");
+  //   },
+  //   onError: (err) => {
+  //     console.log(err);
+  //   },
+  // });
+  const { mutate: addProduct } = usePostProduct(
+    setTitleProduct,
+    setPriceProduct,
+    setCountProduct,
+    setImgProduct,
+    setPopularityProduct,
+    setSaleProduct,
+    setColorsProduct
+  );
 
   function addNewProductHandler(e) {
     e.preventDefault();
     const newInfoProducts = {
       title: titleProduct,
-      price: priceProduct,
-      count: countProduct,
+      price: Number(priceProduct),
+      count: Number(countProduct),
       img: imgProduct,
-      popularity: popularityProduct,
-      sale: saleProduct,
-      colors: colorsProduct,
+      popularity: Number(popularityProduct),
+      sale: Number(saleProduct),
+      colors: Number(colorsProduct),
     };
     if (
       titleProduct &&

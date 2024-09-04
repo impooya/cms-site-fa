@@ -6,7 +6,7 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 export function useGetAllProductsResponse() {
   async function getAllProductsResponse() {
     try {
-      const res = await axios.get("http://localhost:3000/api/products/");
+      const res = await axios.get("http://localhost:8000/api/products/");
       return res.data; // Return the data directly
     } catch (err) {
       console.log(err);
@@ -28,7 +28,7 @@ export function useRemoveProducts(idProducts) {
     mutationFn: (idProducts) => {
       return axios({
         method: "delete",
-        url: `http://localhost:3000/api/products/${idProducts}`,
+        url: `http://localhost:8000/api/products/${idProducts}`,
       });
     },
     onSuccess: () => {
@@ -49,7 +49,7 @@ export function useUpdateProduct(getIdProductsForEdit) {
   return useMutation({
     mutationFn: (newInfoProducts) => {
       return axios.put(
-        `http://localhost:3000/api/products/${getIdProductsForEdit}`,
+        `http://localhost:8000/api/products/${getIdProductsForEdit}`,
         newInfoProducts
       );
     },
@@ -59,10 +59,40 @@ export function useUpdateProduct(getIdProductsForEdit) {
   });
 }
 
+//POST Request For Products
+export function usePostProduct(
+  setTitleProduct,
+  setPriceProduct,
+  setCountProduct,
+  setImgProduct,
+  setPopularityProduct,
+  setSaleProduct,
+  setColorsProduct
+) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (newInfoProducts) => {
+      return axios.post("http://localhost:8000/api/products", newInfoProducts);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["products"]);
+      setTitleProduct("");
+      setPriceProduct("");
+      setCountProduct("");
+      setImgProduct("");
+      setPopularityProduct("");
+      setSaleProduct("");
+      setColorsProduct("");
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+}
 //GET Request For Comments
 export function useGetAllCommenstResponse() {
   async function getAllCommentsResponse() {
-    const res = await axios.get("http://localhost:3000/api/comments/");
+    const res = await axios.get("http://localhost:8000/api/comments/");
     return res.data; // Return res.data
   }
 
@@ -79,7 +109,7 @@ export function useRemoveComments() {
     mutationKey: ["removeComments"],
     mutationFn: (idCommentsDelete) => {
       return axios.delete(
-        `http://localhost:3000/api/comments/${idCommentsDelete}`
+        `http://localhost:8000/api/comments/${idCommentsDelete}`
       );
     },
     onSuccess: () => {
