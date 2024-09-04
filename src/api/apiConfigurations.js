@@ -117,3 +117,20 @@ export function useRemoveComments() {
     },
   });
 }
+
+//PUT Request For Comments
+export function useUpdateComments(commnetId) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["updateComments"],
+    mutationFn: (newCommentInfo) => {
+      return axios.put(
+        `http://localhost:8000/api/comments/${commnetId}`,
+        newCommentInfo
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments"]);
+    },
+  });
+}
