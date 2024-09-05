@@ -13,6 +13,7 @@ import DeleteModals from "../components/DeleteModal";
 import EditModal from "../components/EditModal";
 import { MdOutlineFiberNew } from "react-icons/md";
 import CommentsConfirmModal from "../components/CommentsConfirmModal";
+import CommentRejectModal from "../components/CommentRejectModal";
 
 export default function Comments() {
   const [showDatailsModalForComments, setShowDetailsModalForComments] =
@@ -25,6 +26,7 @@ export default function Comments() {
   const [newCommentContent, setNewCommentContent] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
   useEffect(() => {
     setWhichPage(whichPageName);
   }),
@@ -68,9 +70,13 @@ export default function Comments() {
   function closeEditModal() {
     setShowEditModal(false);
   }
-  function confirmModalHandler(id) {
+  function confirmCommentModalHandler(id) {
     setCommentId(id);
     setShowConfirmModal((prevShow) => !prevShow);
+  }
+  function rejectCommentModalHandler(id) {
+    setCommentId(id);
+    setShowRejectModal((prevShow) => !prevShow);
   }
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
@@ -113,7 +119,7 @@ export default function Comments() {
                     <button
                       type="button"
                       onClick={() => {
-                        confirmModalHandler(comment.id);
+                        confirmCommentModalHandler(comment.id);
                       }}
                       disabled={comment.isAccept === 1}
                       className=" disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
@@ -140,6 +146,17 @@ export default function Comments() {
                       ویرایش
                     </button>
                     <button type="button">پاسخ</button>
+                    <button
+                      type="button"
+                      className={
+                        comment.isAccept === 1 ? "inline-block" : "hidden"
+                      }
+                      onClick={() => {
+                        rejectCommentModalHandler(comment.id);
+                      }}
+                    >
+                      رد پیام
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -164,6 +181,11 @@ export default function Comments() {
         isVisibleConfirmModalForComments={showConfirmModal}
         changeVisibleConfirmModalForComments={setShowConfirmModal}
         idCommentsConfirm={commentId}
+      />
+      <CommentRejectModal
+        isVisibleRejectModalForComments={showRejectModal}
+        changeVisibleRejectModalForComments={setShowRejectModal}
+        idCommentsReject={commentId}
       />
       <EditModal isdiscardEdit={showEditModal}>
         <section className="w-full flex flex-col justify-center items-center gap-4 py-3 px-3 ">

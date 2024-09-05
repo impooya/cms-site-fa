@@ -150,3 +150,22 @@ export function useAcceptComment() {
     },
   });
 }
+
+//POST Reject Comment For Comments
+export function useRejectComment() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["rejectComment"],
+    mutationFn: (idCommentsReject) => {
+      return axios.post(
+        `http://localhost:8000/api/comments/reject/${idCommentsReject}`
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments"]);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+}
