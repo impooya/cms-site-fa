@@ -145,7 +145,13 @@ export default function Comments() {
                     >
                       ویرایش
                     </button>
-                    <button type="button">پاسخ</button>
+                    <button
+                      type="button"
+                      disabled
+                      className="disabled:opacity-45 "
+                    >
+                      پاسخ
+                    </button>
                     <button
                       type="button"
                       className={
