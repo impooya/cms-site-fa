@@ -1,5 +1,6 @@
 import ErorrMessage from "../components/ErorrMessage";
 import ClipLoader from "react-spinners/ClipLoader";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import {
   useGetAllCommenstResponse,
   useUpdateComments,
@@ -11,6 +12,7 @@ import DetailsModal from "../components/DetailsModal";
 import DeleteModals from "../components/DeleteModal";
 import EditModal from "../components/EditModal";
 import { MdOutlineFiberNew } from "react-icons/md";
+import CommentsConfirmModal from "../components/CommentsConfirmModal";
 
 export default function Comments() {
   const [showDatailsModalForComments, setShowDetailsModalForComments] =
@@ -19,9 +21,10 @@ export default function Comments() {
     useState(false);
   const [whichPage, setWhichPage] = useContext(ModalsContext);
   const whichPageName = useLoaderData();
-  const [commnetId, setCommentId] = useState(null);
+  const [commentId, setCommentId] = useState(null);
   const [newCommentContent, setNewCommentContent] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   useEffect(() => {
     setWhichPage(whichPageName);
   }),
@@ -34,14 +37,14 @@ export default function Comments() {
   } = useGetAllCommenstResponse();
   useEffect(() => {
     const comment = comments?.find((item) => {
-      return item.id === commnetId;
+      return item.id === commentId;
     });
 
     if (comment) {
       setNewCommentContent(comment.body);
     }
-  }, [comments, commnetId]);
-  const { mutate: editComment } = useUpdateComments(commnetId);
+  }, [comments, commentId]);
+  const { mutate: editComment } = useUpdateComments(commentId);
   function editCommentHandler() {
     const newCommentInfo = {
       body: newCommentContent,
@@ -64,6 +67,10 @@ export default function Comments() {
   }
   function closeEditModal() {
     setShowEditModal(false);
+  }
+  function confirmModalHandler(id) {
+    setCommentId(id);
+    setShowConfirmModal((prevShow) => !prevShow);
   }
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
@@ -91,7 +98,6 @@ export default function Comments() {
                 <tr className="child:w-56 child:text-xl" key={comment.id}>
                   <td>{comment.userID}</td>
                   <td>{comment.productID}</td>
-
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white">
                     <button
                       type="button"
@@ -104,7 +110,19 @@ export default function Comments() {
                   <td>{comment.hour}</td>
 
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white  space-y-4">
-                    <button type="button">تایید</button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        confirmModalHandler(comment.id);
+                      }}
+                      disabled={comment.isAccept === 1}
+                      className=" disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                    >
+                      <IoCheckmarkDoneCircleOutline
+                        className={comment.isAccept === 1 ? "block" : "hidden"}
+                      />
+                      تایید
+                    </button>
                     <button
                       type="button"
                       onClick={() => {
@@ -134,13 +152,18 @@ export default function Comments() {
       <DetailsModal
         isVisibleDetailsModalForComments={showDatailsModalForComments}
         changeVisibleDetailsModalForComments={setShowDetailsModalForComments}
-        idCommentsDetails={commnetId}
+        idCommentsDetails={commentId}
         allComments={comments}
       />
       <DeleteModals
         isVisibleDeleteModalForComments={showDeleteModalForComments}
         changeVisibleDeleteModalForComments={setShowDeleteModalForComments}
-        idCommentsDelete={commnetId}
+        idCommentsDelete={commentId}
+      />
+      <CommentsConfirmModal
+        isVisibleConfirmModalForComments={showConfirmModal}
+        changeVisibleConfirmModalForComments={setShowConfirmModal}
+        idCommentsConfirm={commentId}
       />
       <EditModal isdiscardEdit={showEditModal}>
         <section className="w-full flex flex-col justify-center items-center gap-4 py-3 px-3 ">

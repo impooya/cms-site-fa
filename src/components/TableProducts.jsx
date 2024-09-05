@@ -32,7 +32,7 @@ export default function TableProducts({
 
   function showEditModalHandler(e) {
     productsIdsForEdit(e.target.getAttribute("data-products-edit-id"));
-    // console.log(e.target.getAttribute("data-products-edit-id"));
+
     if (isVisibleEditModal) {
       changeVisibleEditModal(false);
     } else {

@@ -119,14 +119,30 @@ export function useRemoveComments() {
 }
 
 //PUT Request For Comments
-export function useUpdateComments(commnetId) {
+export function useUpdateComments(commentId) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateComments"],
     mutationFn: (newCommentInfo) => {
       return axios.put(
-        `http://localhost:8000/api/comments/${commnetId}`,
+        `http://localhost:8000/api/comments/${commentId}`,
         newCommentInfo
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments"]);
+    },
+  });
+}
+
+//POST Accept Comment For Comments
+export function useAcceptComment() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["acceptComment"],
+    mutationFn: (idCommentsConfirm) => {
+      return axios.post(
+        `http://localhost:8000/api/comments/accept/${idCommentsConfirm}`
       );
     },
     onSuccess: () => {
