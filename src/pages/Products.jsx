@@ -50,7 +50,6 @@ export default function Products() {
     const product = productsData?.find(
       (item) => String(item.id) === getIdProductsForEdit
     );
-    console.log(product);
     if (product) {
       setNewTitleProduct(product.title);
       setNewPriceProduct(product.price);
