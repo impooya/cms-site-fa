@@ -169,3 +169,11 @@ export function useRejectComment() {
     },
   });
 }
+//-------------------------------------------------> Users Api <---------------------------------------------------------------------------
+export function useGetUserRequest() {
+  async function getUsers() {
+    const usersResponse = await axios.get("http://localhost:8000/api/users/");
+    return usersResponse.data;
+  }
+  return useQuery({ queryKey: ["users"], queryFn: getUsers });
+}
