@@ -1,8 +1,25 @@
 import { useGetUserRequest } from "../api/apiConfigurations";
 import ErorrMessage from "../components/ErorrMessage";
 import ClipLoader from "react-spinners/ClipLoader";
+import { ModalsContext } from "../context/ModalContext";
+import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import DeleteModals from "../components/DeleteModal";
 
 export default function Users() {
+  const [whichPage, setWhichPage] = useContext(ModalsContext);
+  const [userId, setUserId] = useState(null);
+  const [showDeleteModalForUsers, setShowDeleteModalForUsers] = useState(false);
+  const whichPageName = useLoaderData();
+  useEffect(() => {
+    setWhichPage(whichPageName);
+  }),
+    [whichPage, whichPageName];
+
+  function usersDeleteHandler(id) {
+    setUserId(id);
+    setShowDeleteModalForUsers((prevShow) => !prevShow);
+  }
   const { data: users, isError, isLoading, error } = useGetUserRequest();
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
@@ -39,7 +56,14 @@ export default function Users() {
                   <td>{user.email}</td>
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white space-y-5">
                     <button type="button">جزییات</button>
-                    <button type="button">حذف</button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        usersDeleteHandler(user.id);
+                      }}
+                    >
+                      حذف
+                    </button>
                     <button type="button">ویرایش</button>
                   </td>
                 </tr>
@@ -50,6 +74,11 @@ export default function Users() {
       ) : (
         <ErorrMessage msg={"هیچ کاربری پیدا نشد"} />
       )}
+      <DeleteModals
+        isVisibleDeleteModalForUsers={showDeleteModalForUsers}
+        changeVisibleDeleteModalForUsers={setShowDeleteModalForUsers}
+        userIdDelete={userId}
+      />
     </>
   );
 }

@@ -1,7 +1,11 @@
 import { CiCircleAlert } from "react-icons/ci";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
-import { useRemoveComments, useRemoveProducts } from "../api/apiConfigurations";
+import {
+  useRemoveComments,
+  useRemoveProducts,
+  useRemoveUsers,
+} from "../api/apiConfigurations";
 import { useContext } from "react";
 import { ModalsContext } from "../context/ModalContext";
 
@@ -10,6 +14,9 @@ export default function DeleteModals({
   isVisibleDeleteModalForProducts,
   isVisibleDeleteModalForComments,
   changeVisibleDeleteModalForComments,
+  isVisibleDeleteModalForUsers,
+  changeVisibleDeleteModalForUsers,
+  userIdDelete,
   idCommentsDelete,
   idProducts,
 }) {
@@ -17,6 +24,7 @@ export default function DeleteModals({
 
   const { mutate: removeProduct } = useRemoveProducts(idProducts);
   const { mutate: removeComments } = useRemoveComments(idCommentsDelete);
+  const { mutate: removeUsers } = useRemoveUsers();
 
   function deleteProductsHandler() {
     removeProduct(idProducts);
@@ -36,6 +44,15 @@ export default function DeleteModals({
     changeVisibleDeleteModalForComments((prevShow) => {
       !prevShow;
     });
+  }
+
+  function deleteUserHandler() {
+    removeUsers(userIdDelete);
+    changeVisibleDeleteModalForUsers((prevShow) => !prevShow);
+  }
+
+  function closeDeleteModalHandlerForUsers() {
+    changeVisibleDeleteModalForUsers((prevShow) => !prevShow);
   }
   return (
     <>
@@ -107,6 +124,42 @@ export default function DeleteModals({
             </div>,
             document.querySelector("#modals-parent")
           )
+        : whichPage === "users"
+        ? createPortal(
+            <div
+              className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
+                isVisibleDeleteModalForUsers
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              } transition-all `}
+              aria-live="assertive"
+            >
+              <div className="w-[500px] bg-white flex flex-col justify-center items-center gap-y-6 pb-7 rounded-xl">
+                <CiCircleAlert className="size-36 text-red-600" />
+                <h1 className="text-4xl">
+                  ایا میخواهید کاربر مورد نظر را حذف کنید؟
+                </h1>
+                <div className="flex justify-center items-center gap-x-5 w-full">
+                  <button
+                    type="button"
+                    className="bg-red-600 text-white w-24 h-10 text-2xl rounded-xl"
+                    onClick={deleteUserHandler}
+                    disabled={removeComments.isLoading} // Disable button while loading
+                  >
+                    {removeComments.isLoading ? "در حال حذف..." : "بله"}
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-blue-700 text-white w-24 h-10 text-2xl rounded-xl"
+                    onClick={closeDeleteModalHandlerForUsers}
+                  >
+                    خیر
+                  </button>
+                </div>
+              </div>
+            </div>,
+            document.querySelector("#modals-parent")
+          )
         : null}
     </>
   );
@@ -119,4 +172,7 @@ DeleteModals.propTypes = {
   isVisibleDeleteModalForComments: PropTypes.bool,
   changeVisibleDeleteModalForComments: PropTypes.func,
   idCommentsDelete: PropTypes.number,
+  isVisibleDeleteModalForUsers: PropTypes.bool,
+  changeVisibleDeleteModalForUsers: PropTypes.func,
+  userIdDelete: PropTypes.number,
 };

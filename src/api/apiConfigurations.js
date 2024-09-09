@@ -170,10 +170,29 @@ export function useRejectComment() {
   });
 }
 //-------------------------------------------------> Users Api <---------------------------------------------------------------------------
+
+//GET Request For Users
 export function useGetUserRequest() {
   async function getUsers() {
     const usersResponse = await axios.get("http://localhost:8000/api/users/");
     return usersResponse.data;
   }
   return useQuery({ queryKey: ["users"], queryFn: getUsers });
+}
+
+//DELETE Request For Users
+export function useRemoveUsers() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["userDelete"],
+    mutationFn: (userId) => {
+      return axios.delete(`http://localhost:8000/api/users/${userId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["users"]);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 }

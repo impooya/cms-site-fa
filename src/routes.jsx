@@ -33,6 +33,9 @@ export const routes = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+        loader: () => {
+          return "users";
+        },
       },
       {
         path: "/orders",
