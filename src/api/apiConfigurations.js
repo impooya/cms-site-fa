@@ -196,3 +196,17 @@ export function useRemoveUsers() {
     },
   });
 }
+
+//PUT Request For Users
+export function useUpdateUser(userId) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["updateUser"],
+    mutationFn: (newUesrs) => {
+      return axios.put(`http://localhost:8000/api/users/${userId}`, newUesrs);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["users"]);
+    },
+  });
+}
