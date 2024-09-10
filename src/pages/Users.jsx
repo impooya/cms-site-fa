@@ -61,7 +61,20 @@ export default function Users() {
     setShowEditModal((prevShow) => !prevShow);
   }
   function closeEditModal() {
-    setShowEditModal((prevShow) => !prevShow);
+    if (
+      newFirstName &&
+      newLastName &&
+      newUserName &&
+      newPassword &&
+      newPhone &&
+      newCity &&
+      newEmail &&
+      newAddress &&
+      newScore &&
+      newBuy
+    ) {
+      setShowEditModal((prevShow) => !prevShow);
+    }
   }
 
   function detailsUserHandler(id) {
@@ -82,8 +95,21 @@ export default function Users() {
       score: newScore,
       buy: newBuy,
     };
-    updateUser(newUesrInfo);
-    closeEditModal();
+    if (
+      newFirstName &&
+      newLastName &&
+      newUserName &&
+      newPassword &&
+      newPhone &&
+      newCity &&
+      newEmail &&
+      newAddress &&
+      newScore &&
+      newBuy
+    ) {
+      updateUser(newUesrInfo);
+      closeEditModal();
+    }
   }
   if (isLoading) {
     return <ClipLoader color="rgba(0, 0, 255, 1)" />;
