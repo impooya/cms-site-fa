@@ -7,12 +7,14 @@ import { useContext, useEffect, useState } from "react";
 import DeleteModals from "../components/DeleteModal";
 import EditModal from "../components/EditModal";
 import { MdOutlineFiberNew } from "react-icons/md";
+import DetailsModal from "../components/DetailsModal";
 
 export default function Users() {
   const [whichPage, setWhichPage] = useContext(ModalsContext);
   const [userId, setUserId] = useState(null);
   const [showDeleteModalForUsers, setShowDeleteModalForUsers] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDetailModal, setShowDetailModal] = useState(false);
   //new user state
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
@@ -60,6 +62,11 @@ export default function Users() {
   }
   function closeEditModal() {
     setShowEditModal((prevShow) => !prevShow);
+  }
+
+  function detailsUserHandler(id) {
+    setUserId(id);
+    setShowDetailModal((prevShow) => !prevShow);
   }
 
   function updateUserHandler() {
@@ -112,7 +119,12 @@ export default function Users() {
                   <td>{user.phone}</td>
                   <td>{user.email}</td>
                   <td className="child:ml-5 child:bg-blue-700 child:w-20 child:h-14 child:rounded-2xl child:text-white space-y-5">
-                    <button type="button">جزییات</button>
+                    <button
+                      type="button"
+                      onClick={() => detailsUserHandler(user.id)}
+                    >
+                      جزییات
+                    </button>
                     <button
                       type="button"
                       onClick={() => {
@@ -146,6 +158,12 @@ export default function Users() {
         isVisibleDeleteModalForUsers={showDeleteModalForUsers}
         changeVisibleDeleteModalForUsers={setShowDeleteModalForUsers}
         userIdDelete={userId}
+      />
+      <DetailsModal
+        isVisibleDetailsModalForUsers={showDetailModal}
+        changeVisibleDeleteModalForUsers={setShowDetailModal}
+        usersIdDetail={userId}
+        allUsers={users}
       />
       <EditModal isdiscardEdit={showEditModal}>
         <section className="w-full flex flex-col justify-center items-center gap-4 py-3 px-3 ">

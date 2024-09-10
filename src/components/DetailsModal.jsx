@@ -13,6 +13,10 @@ export default function DetailsModal({
   changeVisibleDetailsModalForComments,
   idCommentsDetails,
   allComments,
+  isVisibleDetailsModalForUsers,
+  changeVisibleDeleteModalForUsers,
+  usersIdDetail,
+  allUsers,
 }) {
   const [whichPage] = useContext(ModalsContext);
 
@@ -26,6 +30,9 @@ export default function DetailsModal({
     changeVisibleDetailsModalForComments((prevShow) => {
       !prevShow;
     });
+  }
+  function closeDetailsModalForUsersHandler() {
+    changeVisibleDeleteModalForUsers((prevShow) => !prevShow);
   }
 
   return (
@@ -113,6 +120,47 @@ export default function DetailsModal({
             </div>,
             document.querySelector("#modals-parent")
           )
+        : whichPage === "users"
+        ? createPortal(
+            <div
+              className={`w-full fixed h-dvh bg-black/75 z-99 inset-0 flex justify-center items-center ${
+                isVisibleDetailsModalForUsers
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible"
+              } transition-all `}
+            >
+              <section className="bg-white w-1/3 rounded-2xl flex flex-col mb-3">
+                <button
+                  type="button"
+                  className="mr-3 mt-3 child:size-6 child:text-red-600 w-6"
+                  onClick={closeDetailsModalForUsersHandler}
+                >
+                  <IoCloseCircleOutline />
+                </button>
+                <table className="w-full table-fixed mt-5">
+                  <thead className="text-center">
+                    <tr>
+                      <th>شهر</th>
+                      <th>آدرس</th>
+                      <th>امتیاز</th>
+                      <th>میزان خرید</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-center">
+                    {allUsers?.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.id === usersIdDetail && item.city}</td>
+                        <td>{item.id === usersIdDetail && item.address}</td>
+                        <td>{item.id === usersIdDetail && item.score}</td>
+                        <td>{item.id === usersIdDetail && item.buy}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            </div>,
+            document.querySelector("#modals-parent")
+          )
         : null}
     </>
   );
@@ -126,4 +174,8 @@ DetailsModal.propTypes = {
   changeVisibleDetailsModalForComments: PropTypes.func,
   idCommentsDetails: PropTypes.number,
   allComments: PropTypes.array,
+  isVisibleDetailsModalForUsers: PropTypes.bool,
+  changeVisibleDeleteModalForUsers: PropTypes.func,
+  usersIdDetail: PropTypes.number,
+  allUsers: PropTypes.array,
 };
