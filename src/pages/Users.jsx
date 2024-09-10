@@ -248,7 +248,7 @@ export default function Users() {
             </span>
             <span className="bg-zinc-400/50 rounded-2xl w-full flex justify-center items-center pr-2">
               <MdOutlineFiberNew className="text-4xl" />
-              <input
+              <textarea
                 className="placeholder:text-zinc-600 w-full h-11 bg-transparent outline-none border-none pr-2"
                 type="text"
                 placeholder={`ادرس جدید کاربر را وارد کنید`}
