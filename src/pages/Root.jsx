@@ -6,11 +6,11 @@ export default function Root() {
   return (
     <>
       <ModalProvider>
-        <section className="flex items-center">
+        <section className="flex items-center h-screen">
           <SideBar />
-          <div className="mr-72 w-full px-6 mt-4 flex flex-col items-center justify-center">
+          <div className="mr-72 w-full px-6 mt-28 flex flex-col items-center justify-center h-full">
             <Header />
-            <section className="mt-7 w-full ">
+            <section className="mt-7 w-full h-full">
               <Outlet />
             </section>
           </div>

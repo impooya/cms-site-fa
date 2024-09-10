@@ -210,3 +210,11 @@ export function useUpdateUser(userId) {
     },
   });
 }
+//->>>>>>>>>>>>>>>>>>>>>>>>> orders
+export function useGetOrders() {
+  async function getOrders() {
+    const res = await axios.get("http://localhost:8000/api/orders/");
+    return res.data;
+  }
+  return useQuery({ queryKey: ["orders"], queryFn: getOrders });
+}
