@@ -6,11 +6,13 @@ import Comments from "./pages/Comments";
 import Users from "./pages/Users";
 import Orders from "./pages/Orders";
 import Offers from "./pages/Offers";
+import ErrorPage from "./pages/ErrorPage";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
