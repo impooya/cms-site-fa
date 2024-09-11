@@ -11,7 +11,7 @@ This project is based on the educational React course by SabzLearn. The backend 
 3. <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/></a> - A JavaScript library for building user interfaces.
 4. <a href="https://reactrouter.com/"><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/></a> - A standard library for routing in React applications.
 5. <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white"/></a>- An open-source relational database management system.
-6. <a href="https://nodejs.org/"><img src="    https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/></a> - A JavaScript runtime built on Chrome's V8 JavaScript engine.
+6. <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/></a> - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 7. <a href="https://tanstack.com/query/latest"><img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"/></a> - A library for fetching, caching, and updating data in React applications.
 8. <a href="https://axios-http.com/"><img src="https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white"/></a> - A promise-based HTTP client for the browser and Node.js.
 9. <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"/></a> - A utility-first CSS framework for rapid UI development.
